@@ -88,6 +88,8 @@ const deleteContact = async (req, res) => {
 
 const getSearchContact = async (req, res) => {
 
+    const email = req.userEmail;
+
     const { searchQuery } = req.query;
 
     try {
@@ -98,7 +100,7 @@ const getSearchContact = async (req, res) => {
 
 
 
-        const contacts = await Contact.find({ name })
+        const contacts = await Contact.find({ email, name })
 
         // const con2 = await Contact.find(number)
         res.status(200).json(contacts);
